@@ -1,6 +1,5 @@
 # ASL interpretation
 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
 Based on features get from LeapMotion sendor, using SDK toolit, this project uses Sckit-learn library to interpret American Signal Languages symbols.
 
