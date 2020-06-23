@@ -21,8 +21,9 @@ from sklearn.neighbors.nearest_centroid import NearestCentroid
 from sklearn.neighbors import KNeighborsClassifier
 
 # -------- Select classifier type --------#
-classifierType = raw_input("Which classifier: (SVM/ANN/KNN/NearestCentroid):")
-classifierType
+# classifierType = raw_input("Which classifier: (SVM/ANN/KNN/NearestCentroid):")
+# classifierType
+classifierType = 'SVM'
 
 if classifierType == 'SVM':
 	# Create a classifier: a support vector classifier
