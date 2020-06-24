@@ -13,7 +13,7 @@ from sklearn.externals import joblib
 
 import numpy as np
 
-
+# TODO: REESCREVER ESTA CLASSE!
 class LeapMotionListener(Leap.Listener):
 	finger_names = ['Thumb', 'Index', 'Middle', 'Ring', 'Pinky']
 	bone_names = ['Metacarpo','Proximal','Intermediate','Distal']
@@ -469,5 +469,6 @@ def main():
 		pass
 	finally:
 		controller.remove_listener(listener)
+
 if __name__ == "__main__":
 	main()
