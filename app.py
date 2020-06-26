@@ -16,9 +16,27 @@ class LeapMotionListener(Leap.Listener):
     state_names = ['STATE_INVALID', 'STATE_START', 'STATE_UPDATE', 'STATE_END']
 
     def on_init(self, controller):
+        """
+        Initialize.
+
+        Args:
+        ---------
+            controller
+        Return:
+        ---------
+        """
         print("Initialized")
 
     def on_connect(self, controller):
+        """
+        On connect method.
+
+        Args:
+        ---------
+            controller
+        Return:
+        ---------
+        """
         print("Motion Sensor Connected")
 
         controller.enable_gesture(Leap.Gesture.TYPE_CIRCLE)
@@ -27,12 +45,39 @@ class LeapMotionListener(Leap.Listener):
         controller.enable_gesture(Leap.Gesture.TYPE_SWIPE)
 
     def on_disconnect(self, controller):
+        """
+        On disconnect method.
+
+        Args:
+        ---------
+            controller
+        Return:
+        ---------
+        """
         print("Motion Sensor Disconnect")
 
     def on_exit(self, controller):
+        """
+        On exit method.
+
+        Args:
+        ---------
+            controller
+        Return:
+        ---------
+        """
         print("Exit")
 
     def on_frame(self, controller):
+        """
+        On frame method: get all features.
+
+        Args:
+        ---------
+            controller
+        Return:
+        ---------
+        """
         frame = controller.frame()
         # Get general properties
         # print("Frame ID: " + str(frame.id) + " Timestamp: " + str(frame.timestamp) + " # of hands: " + (len(frame.hands)) + " # of Fingers: " + str(len(frame.fingers)) + " # of Tools: " (len(frame.tools)) + " # of Gesture: " + (len(frame.gestures())))
@@ -117,18 +162,12 @@ class LeapMotionListener(Leap.Listener):
 
         # Threshold of storage initialize.
         th = 0
-        Iinitial = 0
 
         # Get hand and palm hand position/angles
         for hand in frame.hands:
 
-            handType = "Left Hand" if hand.is_left else "Hight Hand"
-
-            normal = hand.palm_normal
-            direction = hand.direction
-
             # Get data from each arm.
-            arm = hand.arm
+            normal = hand.palm_normal
             th = fabs(normal[1])
 
             # Track 500 points if NormYposition>.95.
@@ -289,9 +328,19 @@ class LeapMotionListener(Leap.Listener):
 
     def get_inference(self, RTP_0, RTP_1, RTP_2, RTP_3, RTP_4, RTT_01, RTT_02, RTT_03, RTT_04, RTT_12, RTT_13, RTT_14, RTT_23, RTT_24, RTT_34, RTJ_0):
         """
-		Load model, then classify simbol
+        Load model, then classify simbol
+        Args:
+        ---------
+            RTP_0, RTP_1,...: features
+        Return:
+        ---------
+            just print regonized characters
         """
-        classifier = joblib.load('data/NearestCentroid.pkl')
+        # classifier = joblib.load('data/NearestCentroid.pkl')
+        # classifier = joblib.load('data/SVM.pkl')
+        classifier = joblib.load('data/ANN.pkl')
+        # classifier = joblib.load('data/NearestCentroid.pkl')
+
         InputSamples = np.vstack((
             RTP_0, RTP_1, RTP_2, RTP_3, RTP_4, RTT_01, RTT_02, RTT_03, RTT_04, RTT_12, RTT_13, RTT_14, RTT_23, RTT_24, RTT_34, RTJ_0
         ))
@@ -348,8 +397,15 @@ class LeapMotionListener(Leap.Listener):
 
     def get_raw_data(self, RTP_0, RTP_1, RTP_2, RTP_3, RTP_4, RTT_01, RTT_02, RTT_03, RTT_04, RTT_12, RTT_13, RTT_14, RTT_23, RTT_24, RTT_34, RTJ_0, RTJ_1, RTJ_2, RTJ_3, RTJ_4):
         """
-        Storage features in .txt format
-        """
+        Method that saves raw data into .txt file.
+
+        Args:
+        ---------
+            RTP_0, RTP_1,...: features
+        Return:
+        ---------
+            raw data saved
+         """
         # Get the number of frames storage
         TotalLines = 0
         with open("FeaturesTest.txt") as f:

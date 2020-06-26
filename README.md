@@ -10,19 +10,32 @@ Three models were been analyzed:
   - SVM
   - Nearest Centroid
 
-# Features
+## Features and training
 
 The set of features used to train the set of models were (get from LeapMotion sensor SDK): 
   - RTP
   - RTT
   - RTJ
 
-You can also:
+To get trained model:
   - Run script: 
- ```sh
-python main_ObtainModels.py
+```sh
+python train.py --classifierType ANN
 ```
-to get Confusion Matrix to each models analyzed :)
+to get Confusion Matrix from SVM, for example.
+
+The list of available models can be visualized with:
+```sh
+python train.py --help
+```
+
+## Running trained model
+
+All the trained models are in the directory ```data/```.
+To run the ANN trained model, type:
+```sh
+python app.py
+```
 
   - Read the document: Letter_Leap.pdf to get more information
 

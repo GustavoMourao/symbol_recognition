@@ -17,8 +17,8 @@ def get_model(classifierType):
     ---------
         classifierType: classifier type
     Return:
-        epoch: epoch number
     ---------
+        epoch: epoch number
     """
     os.chdir('data/')
 
