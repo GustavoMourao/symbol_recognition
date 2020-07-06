@@ -42,4 +42,4 @@ python app.py
 
 In case of you want the real time application, please send me a message!
 
-![](https://github.com/GustavoMourao/symbol_recognition/tree/master/data/asl-gmourao.gif)
+![Alt Text](https://github.com/GustavoMourao/symbol_recognition/tree/master/data/asl-gmourao.gif)
