@@ -324,7 +324,7 @@ class LeapMotionListener(Leap.Listener):
                 tic = time.clock()
                 self.get_inference(RTP_0, RTP_1, RTP_2, RTP_3, RTP_4, RTT_01, RTT_02, RTT_03, RTT_04, RTT_12, RTT_13, RTT_14, RTT_23, RTT_24, RTT_34, RTJ_0)
                 toc = time.clock()
-                print("Inference Processing time: " + str(toc-tic))
+                # print("Inference Processing time: " + str(toc-tic))
 
     def get_inference(self, RTP_0, RTP_1, RTP_2, RTP_3, RTP_4, RTT_01, RTT_02, RTT_03, RTT_04, RTT_12, RTT_13, RTT_14, RTT_23, RTT_24, RTT_34, RTJ_0):
         """
